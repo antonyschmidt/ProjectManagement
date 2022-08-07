@@ -1,0 +1,30 @@
+.signup-container {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form {
+    padding: 10rem;
+    border: 1px var(--bg-color) solid;
+    box-shadow: 1px 1px 10px var(--bg-color);
+    box-sizing: border-box;
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form h1 {
+    align-self: center;
+}
+
+.signup-line {
+    height: 1px;
+    width: 10rem;
+    background: var(--bg-color);
+    align-self: center;
+    margin-bottom: 3rem;
+}

@@ -1,0 +1,118 @@
+.sidebar {
+    height: 100vh;
+    background-color: var(--bg-color);
+    padding: 5rem;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.title {
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    cursor: default;
+}
+
+.nav-list {
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.nav-list li {
+    box-sizing: border-box;
+    padding: 1rem 0;
+    transition: ease 0.3s;
+}
+
+.nav-list li a {
+    color: var(--text-color);
+}
+
+.nav-list li:hover {
+    color: var(--text-color);
+    transform: scale(1.1);
+}
+
+.nav-list li a {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list button {
+    margin-top: 2rem;
+}
+
+.title-container {
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: ease 0.2s;
+}
+
+.close-icon:hover {
+    transform: scale(1.1);
+}
+
+/* icons */
+
+.dashboard-icon {
+    margin-right: 1rem;
+}
+
+.projects-icon {
+    margin-right: 1rem;
+    font-size: 0.9rem;
+}
+
+.signup-icon {
+    margin-right: 1rem;
+    font-size: 0.9rem;
+}
+
+.login-icon {
+    margin-right: 1rem;
+}
+
+/* searchbar */
+
+.searchbar {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-search i {
+    color: var(--text-color);
+    margin-right: 1rem;
+}
+
+.sidebar-searchbar {
+    border: 1px solid var(--text-color);
+    background: none;
+    margin-bottom: 2rem;
+}
+
+.sidebar-searchbar::placeholder {
+    color: var(--text-color);
+}
+
+.sidebar-searchbar:active {
+    border: none;
+}
