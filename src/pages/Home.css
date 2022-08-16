@@ -1,0 +1,23 @@
+.home-container {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.home-nav-list {
+    display: flex;
+}
+
+.home-nav-list li {
+    margin-right: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* break line */
+
+.break-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--break-color);
+    margin: 1rem 0 2rem;
+}

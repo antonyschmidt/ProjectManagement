@@ -1,0 +1,32 @@
+.addProject-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 70%);
+    z-index: 1;
+}
+
+.addProject-form {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+    background-color: white;
+    border-radius: 1rem;
+    z-index: 2;
+}
+
+.addProject-form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.click-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}

@@ -1,0 +1,97 @@
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* freinds section */
+
+.friends-section {
+    display: flex;
+    margin: 0 4rem;
+}
+
+.friends-section button:hover {
+    border-radius: 5rem !important;
+}
+
+.friends-section ul {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+.friends-section ul li {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image-one {
+    position: relative;
+    left: 1rem;
+    margin-left: -1rem;
+}
+
+.profile-image-two {
+    position: relative;
+}
+
+.profile-image-three {
+    position: relative;
+    left: -1rem;
+    margin-right: -1rem;
+}
+
+.friends-section ul li img {
+    box-sizing: border-box;
+    object-fit: cover;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50px;
+    border: 0.9px solid white;
+}
+
+/* searchbar */
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchbar i {
+    color: var(--text-color);
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 9px;
+    font-size: 1rem;
+    padding: 0;
+    z-index: -1;
+}
+
+.topbar-searchbar {
+    border: 1px solid var(--text-color);
+    background: none;
+    padding-left: 35px;
+    transition: 1s ease;
+}
+
+.topbar-searchbar:focus {
+    outline: none;
+    border: 1px solid var(--secondary-color);
+}
+
+.topbar-searchbar::placeholder {
+    color: var(--text-color);
+}
+
+.topbar-searchbar:active {
+    border: none;
+}

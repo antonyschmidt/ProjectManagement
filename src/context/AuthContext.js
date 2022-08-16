@@ -9,7 +9,7 @@ export const AuthContext = createContext()
 function authReducer(state, action) {
     switch (action.type) {
         case 'AUTH_READY':
-            return { ...state, authReady: action.payload }
+            return { ...state, authReady: true, user: action.payload }
         case 'SIGN_UP':
             return { ...state, user: action.payload }
         case 'LOG_IN':
@@ -30,6 +30,7 @@ export function AuthContextProvider({ children }) {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             dispatch({ type: 'AUTH_READY', payload: user })
+            console.log('Auth Is ready', user)
         })
     }, [])
 
