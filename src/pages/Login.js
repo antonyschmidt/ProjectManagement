@@ -1,6 +1,7 @@
 import { useState } from "react"
+//hooks
 import { useLogin } from "../hooks/useLogin"
-//icons
+import { useGoogle } from '../hooks/useGoogle'
 //icons
 import { FcGoogle } from "react-icons/fc";
 //styles
@@ -11,6 +12,7 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [inputErr, setInputErr] = useState(null)
     const { login, error, isPending } = useLogin()
+    const { googleSignUp } = useGoogle()
 
 
     const handleSubmit = (e) => {
@@ -58,7 +60,7 @@ export default function Login() {
                     <p>or</p>
                 </div>
                 <button className="google-btn" onClick={() => googleSignUp()}>
-                    Sign In with Google <FcGoogle className="google-icon" />
+                    Log In with Google <FcGoogle className="google-icon" />
                 </button>
             </div>
         </div>

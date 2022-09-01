@@ -10,6 +10,7 @@ import './Signup.css'
 import { FaUserAlt } from "react-icons/fa";
 
 export default function Signup() {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [inputErr, setInputErr] = useState(null)
@@ -35,6 +36,14 @@ export default function Signup() {
                 <form onSubmit={handleSubmit} className='signup-form'>
                     <h1>Signup</h1>
                     <div className="signup-line-one" />
+                    <label>
+                        <p>Enter Name:</p>
+                        <input
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                        />
+                    </label>
                     <label>
                         <p>Enter Email:</p>
                         <input

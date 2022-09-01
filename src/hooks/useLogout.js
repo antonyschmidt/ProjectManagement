@@ -15,7 +15,7 @@ export const useLogout = () => {
         setIsPending(true)
 
         try {
-            const res = await signOut(auth)
+            await signOut(auth)
 
             dispatch({ type: 'LOG_OUT' })
 
