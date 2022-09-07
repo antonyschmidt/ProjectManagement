@@ -1,6 +1,10 @@
 .show-container {
+    height: 100%;
+    width: 100%;
     flex-grow: 1;
+    max-width: inherit;
     padding: 2rem;
+    box-sizing: border-box;
 }
 
 .title-nav-section h1 {
@@ -11,7 +15,7 @@
     display: flex;
 }
 
-.show-nav-list li {
+.show-nav-list p {
     margin-right: 2rem;
     color: var(--text-color);
     cursor: pointer;

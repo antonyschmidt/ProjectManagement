@@ -1,13 +1,13 @@
 //styles
 import './Topbar.css'
 //assets
-import profileOne from '../assets/woman.jpg'
-import profileTwo from '../assets/woman2.jpg'
-import profileThree from '../assets/woman3.jpg'
+import profileOne from '../../assets/woman.jpg'
+import profileTwo from '../../assets/woman2.jpg'
+import profileThree from '../../assets/woman3.jpg'
 //icons
 import { FaSearch } from "react-icons/fa";
 //hooks
-import { useLogout } from '../hooks/useLogout';
+import { useLogout } from '../../hooks/useLogout';
 
 export default function Topbar() {
     const { logout, error, isPending } = useLogout()

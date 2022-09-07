@@ -5,14 +5,21 @@
     width: 100%;
     padding: 2rem;
     box-sizing: border-box;
-    position: relative;
 }
 
 /* freinds section */
 
 .friends-section {
     display: flex;
-    margin: 0 4rem;
+    margin: 0 3rem;
+}
+
+.friends-section button {
+    height: 2.2rem;
+    width: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .friends-section button:hover {
@@ -50,8 +57,8 @@
 .friends-section ul li img {
     box-sizing: border-box;
     object-fit: cover;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2.2rem;
+    width: 2.2rem;
     border-radius: 50px;
     border: 0.9px solid white;
 }

@@ -3,6 +3,7 @@ import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { GoogleAuthProvider } from 'firebase/auth';
 import { getStorage } from 'firebase/storage'
+import { serverTimestamp } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD041udhCN7MSIbOCmhJnwGxqJEy9g8Hss",
@@ -28,4 +29,7 @@ const auth = getAuth(app)
 //init google auth
 const provider = new GoogleAuthProvider()
 
-export { db, auth, provider, storage }
+//init timestamp
+let timestamp = serverTimestamp()
+
+export { db, auth, provider, storage, timestamp }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 //firebase
 import { db } from '../firebase/config'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, onSnapshot } from 'firebase/firestore'
 
-export const useDoc = (c, q) => {
+export const useDoc = (c, id) => {
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [data, setData] = useState(null)
@@ -13,27 +13,30 @@ export const useDoc = (c, q) => {
         setError(null)
         setIsPending(true)
 
-        const fetchDoc = async () => {
-            try {
-                const res = await getDoc(doc(db, c, q))
 
-                if (!res) {
-                    throw new Error('Could not load data')
+        try {
+            const unsub = onSnapshot(doc(db, c, id), (doc) => {
+
+                if (!doc.data()) {
+                    return setError('Could not fetch data!')
                 }
 
-                console.log(res)
+                setData({ ...doc.data(), id: doc.id })
+                setIsPending(false)
+            })
 
-                setIsPending(false)
-            } catch (err) {
-                console.log(err.message)
-                setError(err.message)
-                setIsPending(false)
-            }
+            return () => unsub()
+
+        } catch (err) {
+            console.log(err.message)
+            setError(err.message)
+            setIsPending(false)
         }
 
-        fetchDoc()
 
-    }, [db, c, q])
+
+
+    }, [c, id])
 
 
 

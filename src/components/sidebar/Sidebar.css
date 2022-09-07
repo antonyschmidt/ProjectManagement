@@ -1,8 +1,31 @@
 .sidebar-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    background-color: var(--bg-color);
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+.sidebar-container-inactive {
+    display: none;
+}
+
+/* sidebar toggle */
+
+.sidebar-toggle-open {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     height: 100vh;
     background-color: var(--bg-color);
-    padding: 4rem;
-    box-sizing: border-box;
+}
+
+.sidebar-toggle-closed {
+    display: none;
 }
 
 /* logo header */
@@ -14,13 +37,15 @@
 }
 
 .title {
+    margin-top: 2px;
+    font-size: 1.3rem;
     text-transform: uppercase;
     letter-spacing: 0.5rem;
     cursor: default;
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-left: 1rem;
 }
 
@@ -34,10 +59,11 @@
 
 .user-widget-container p {
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .letterbox {
-    padding: 0.5rem 1.5rem;
+    padding: 0.25rem 1.2rem;
     margin-right: 1rem;
     border-radius: 0.5rem;
     background-color: var(--secondary-color);
@@ -46,7 +72,7 @@
 .letterbox p {
     color: white;
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 600;
 }
 
@@ -55,8 +81,11 @@
 .overview-heading {
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.6rem;
     margin-bottom: 1rem;
+}
+
+.overview-heading p {
+    font-size: 0.55rem;
 }
 
 .nav-list {
@@ -91,32 +120,53 @@
     margin-top: 2rem;
 }
 
-/* close sidebar */
+/* close & open sidebar */
 
 .close-icon {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    padding: 1rem;
     font-weight: bolder;
+    z-index: 1;
     cursor: pointer;
     color: var(--text-color);
-    transition: ease 0.2s;
+    transition: ease 0.3s;
 }
 
 .close-icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
+    color: var(--secondary-color);
 }
+
+.open-icon {
+    font-size: 1rem;
+    padding: 1rem;
+    z-index: 1;
+    font-weight: bolder;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: ease 0.3s;
+}
+
+.open-icon:hover {
+    transform: scale(1.2);
+    color: var(--secondary-color);
+}
+
+
 
 /* icons */
 
 .dashboard-icon {
     margin-right: 1rem;
+    font-size: 0.8rem;
 }
 
 .projects-icon {
     margin-right: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
 }
 
 .signup-icon {
@@ -147,7 +197,7 @@
 .workspace-nav p {
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     margin-right: auto;
     margin-bottom: 1rem;
 }
@@ -170,36 +220,74 @@
 /* workspace ul */
 
 .workspace-list {
-    height: 15rem;
+    height: 10rem;
     overflow-y: scroll;
-}
-
-.workspace-list li a {
-    color: inherit;
+    display: flex;
+    flex-direction: column;
 }
 
 .workspace-list li {
-    margin: 1rem 0;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0.5rem 0;
     margin-right: 0.5rem;
-    transition: 0.3s ease;
     color: var(--text-color);
 }
 
-.workspace-list li:hover {
+.workspace-list li a {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.workspace-list li a.active {
     background-color: var(--secondary-color);
     padding: 0.5rem 1rem;
     border-radius: 1rem;
+    width: 100%;
     color: white;
 }
 
+.folder-minus-icon {
+    position: absolute;
+    right: 1rem;
+    color: var(--bg-color);
+    font-size: 0.75rem;
+    transition: 0.3;
+    z-index: -2;
+
+}
+
+.workspace-list li a.active .folder-minus-icon {
+    z-index: 1;
+}
+
+.workspace-list li a.active .folder-minus-icon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
 /* style circles bottom */
+
+.sidebar-circles-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.sidebar-circles {
+    position: relative;
+}
 
 .sidebar-circle-primary-bottom {
     position: absolute;
-    bottom: -8rem;
-    left: -8rem;
-    width: 17rem;
-    height: 17rem;
+    bottom: -7rem;
+    left: -6rem;
+    width: 14rem;
+    height: 14rem;
     background-color: var(--secondary-color);
     border-radius: 10rem;
 
@@ -207,10 +295,20 @@
 
 .sidebar-circle-secondary-bottom {
     position: absolute;
-    bottom: -4rem;
+    bottom: -2.5rem;
     left: 6rem;
-    width: 7rem;
-    height: 7rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 5rem;
     background-color: var(--primary-color);
+}
+
+@media(max-height: 740px) {
+
+    .sidebar-circles-container {
+        position: relative;
+        bottom: -12rem;
+        left: -3rem;
+    }
+
 }

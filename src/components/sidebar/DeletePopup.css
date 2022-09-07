@@ -1,0 +1,34 @@
+.delete-popup-container {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(1, 0, 0, 0.505);
+}
+
+.popup {
+    background-color: white;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+    border-radius: 2rem;
+}
+
+.btn-container {
+    margin-top: 2rem;
+}
+
+.btn-container button {
+    margin: 0 1rem;
+}
+
+.click-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}

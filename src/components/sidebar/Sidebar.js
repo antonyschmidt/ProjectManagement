@@ -2,34 +2,45 @@ import { Link } from 'react-router-dom'
 //icons
 import { FaDiceD6 } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleRight } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaFolder } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 //components
 import AddProject from './AddProject';
+import DeletePopup from './DeletePopup';
+import ProjectLink from './ProjectLink';
 //hooks
-import { useCollection } from '../hooks/useCollection';
+import { useCollection } from '../../hooks/useCollection';
 //context
-import { useAuthContext } from '../hooks/useAuthContext'
+import { useAuthContext } from '../../hooks/useAuthContext'
 //styles
 import './Sidebar.css'
 import { useState } from 'react';
 
+
 export default function Sidebar() {
     const { data, error, isPending } = useCollection('projects')
     const [formActive, setFormActive] = useState(false)
+    const [deletePopupActive, setDeletePopupActive] = useState(false)
+    const [sidebarActive, setSidebarActive] = useState(true)
+    const [projectId, setProjectId] = useState('')
     const { user } = useAuthContext()
+
     let userRef = ''
 
     if (user) {
         userRef = user.email.charAt(0)
     }
 
-
     return (
         <>
-            <nav className='sidebar-container'>
+            <div className={!sidebarActive ? 'sidebar-toggle-open' : 'sidebar-toggle-closed'}>
+                <FaAngleRight className='open-icon' onClick={() => setSidebarActive(true)} />
+            </div>
+            <nav className={sidebarActive ? 'sidebar-container' : 'sidebar-container-inactive'}>
+                <FaAngleLeft className='close-icon' onClick={() => setSidebarActive(false)} />
                 {!user &&
                     <div className='title-container'>
 
@@ -85,20 +96,20 @@ export default function Sidebar() {
                             <i className='add-icon' onClick={() => setFormActive(true)}>+</i>
                         </div>
                         <ul className='workspace-list'>
-                            {data && data.map((project) => (
-                                <li key={project.title}>
-                                    <Link to={`/projects/${project.title}`}>
-                                        {project.title}
-                                    </Link>
-                                </li>
-                            ))}
+                            {data && <ProjectLink setDeletePopupActive={setDeletePopupActive} setProjectId={setProjectId} projects={data} />}
                         </ul>
                     </>
                 }
-                <div className='sidebar-circle-primary-bottom' />
-                <div className='sidebar-circle-secondary-bottom' />
+                <div className="sidebar-circles-container">
+                    <div className="sidebar-circles">
+                        <div className='sidebar-circle-primary-bottom' />
+                        <div className='sidebar-circle-secondary-bottom' />
+                    </div>
+                </div>
+
             </nav>
             {formActive && <AddProject setFormActive={setFormActive} />}
+            {deletePopupActive && projectId && <DeletePopup projectId={projectId} setDeletePopupActive={setDeletePopupActive} />}
         </>
     )
 }

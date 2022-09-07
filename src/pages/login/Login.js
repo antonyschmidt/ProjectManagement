@@ -1,49 +1,39 @@
 import { useState } from "react"
 //hooks
-import { useSignup } from "../hooks/useSignup";
-import { useGoogle } from '../hooks/useGoogle'
+import { useLogin } from "../../hooks/useLogin"
+import { useGoogle } from '../../hooks/useGoogle'
 //icons
 import { FcGoogle } from "react-icons/fc";
 //styles
-import './Signup.css'
-//icons
-import { FaUserAlt } from "react-icons/fa";
+import './Login.css'
 
-export default function Signup() {
-    const [name, setName] = useState('')
+export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [inputErr, setInputErr] = useState(null)
-    const { signup, error, isPending } = useSignup()
+    const { login, error, isPending } = useLogin()
     const { googleSignUp } = useGoogle()
 
-    const handleSubmit = async (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault()
 
         if (!email || !password) {
             return setInputErr('Fill out name and email first.')
         }
 
-        await signup(email, password)
+        login(email, password)
 
         setEmail('')
         setPassword('')
     }
 
     return (
-        <div className='signup-content-container'>
-            <div className="signup-container">
-                <form onSubmit={handleSubmit} className='signup-form'>
-                    <h1>Signup</h1>
-                    <div className="signup-line-one" />
-                    <label>
-                        <p>Enter Name:</p>
-                        <input
-                            type="text"
-                            onChange={(e) => setName(e.target.value)}
-                            value={name}
-                        />
-                    </label>
+        <div className="login-content-container">
+            <div className="login-container">
+                <form onSubmit={handleSubmit} className='login-form'>
+                    <h1>Login</h1>
+                    <div className="login-line-one" />
                     <label>
                         <p>Enter Email:</p>
                         <input
@@ -60,17 +50,17 @@ export default function Signup() {
                             value={password}
                         />
                     </label>
-                    <button className="form-btn">Sign Up</button>
+                    <button className="form-btn" >Login</button>
                     {inputErr && <p className="error">{inputErr}</p>}
                     {error && <p className="error">{error}</p>}
                     {isPending && <p className="isPending">Loading ...</p>}
                 </form>
                 <div className="or-break">
-                    <div className="signup-line-two" />
+                    <div className="login-line-two" />
                     <p>or</p>
                 </div>
                 <button className="google-btn" onClick={() => googleSignUp()}>
-                    Sign Up with Google <FcGoogle className="google-icon" />
+                    Log In with Google <FcGoogle className="google-icon" />
                 </button>
             </div>
         </div>

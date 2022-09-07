@@ -1,39 +1,39 @@
 import { useState } from "react"
 //hooks
-import { useLogin } from "../hooks/useLogin"
-import { useGoogle } from '../hooks/useGoogle'
+import { useSignup } from "../../hooks/useSignup";
+import { useGoogle } from '../../hooks/useGoogle'
 //icons
 import { FcGoogle } from "react-icons/fc";
 //styles
-import './Login.css'
+import './Signup.css'
 
-export default function Login() {
+
+export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [inputErr, setInputErr] = useState(null)
-    const { login, error, isPending } = useLogin()
+    const { signup, error, isPending } = useSignup()
     const { googleSignUp } = useGoogle()
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (!email || !password) {
             return setInputErr('Fill out name and email first.')
         }
 
-        login(email, password)
+        await signup(email, password)
 
         setEmail('')
         setPassword('')
     }
 
     return (
-        <div className="login-content-container">
-            <div className="login-container">
-                <form onSubmit={handleSubmit} className='login-form'>
-                    <h1>Login</h1>
-                    <div className="login-line-one" />
+        <div className='signup-content-container'>
+            <div className="signup-container">
+                <form onSubmit={handleSubmit} className='signup-form'>
+                    <h1>Signup</h1>
+                    <div className="signup-line-one" />
                     <label>
                         <p>Enter Email:</p>
                         <input
@@ -50,17 +50,17 @@ export default function Login() {
                             value={password}
                         />
                     </label>
-                    <button className="form-btn" >Login</button>
+                    <button className="form-btn">Sign Up</button>
                     {inputErr && <p className="error">{inputErr}</p>}
                     {error && <p className="error">{error}</p>}
                     {isPending && <p className="isPending">Loading ...</p>}
                 </form>
                 <div className="or-break">
-                    <div className="login-line-two" />
+                    <div className="signup-line-two" />
                     <p>or</p>
                 </div>
                 <button className="google-btn" onClick={() => googleSignUp()}>
-                    Log In with Google <FcGoogle className="google-icon" />
+                    Sign Up with Google <FcGoogle className="google-icon" />
                 </button>
             </div>
         </div>

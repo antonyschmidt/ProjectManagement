@@ -12,7 +12,7 @@
 .addProject-form {
     display: flex;
     flex-direction: column;
-    padding: 4rem;
+    padding: 5rem 8rem;
     background-color: white;
     border-radius: 1rem;
     z-index: 2;
@@ -29,4 +29,8 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
+}
+
+.dueDate-input {
+    width: 88%;
 }

@@ -1,6 +1,10 @@
 .App {
     display: flex;
-    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
 }
 
 .App .container {
@@ -9,11 +13,15 @@
 }
 
 .main-area {
-    flex-grow: 1;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    flex-grow: 1;
 }
