@@ -10,19 +10,14 @@ export default function Show() {
     const { id } = useParams()
     const { data: project, error, isPending } = useDoc('projects', id)
 
+
     return (
         <div className='show-container'>
             <div className='title-nav-section'>
                 {project && <h1>{project.title}</h1>}
                 <ul className='show-nav-list'>
-                    <p>
+                    <p className='active'>
                         Board
-                    </p>
-                    <p>
-                        Gantt
-                    </p>
-                    <p>
-                        Activities
                     </p>
                     <p>
                         Details
@@ -31,7 +26,7 @@ export default function Show() {
                 <div className='break-line' />
             </div>
             <div className='main-show-section'>
-                {project && <Card id={id} project={project} />}
+                {project && <Card project={project} />}
                 {error && <p className='error'>{error}</p>}
             </div>
         </div>

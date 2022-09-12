@@ -8,6 +8,7 @@
   --primary-color: #ffc2d1;
   --secondary-color: #9381ff;
   --bg-color: #f5f3f4;
+  --hover-color: #ece8e8f2;
   --primary-button-color: #6a994e;
   --secondary-button-color: #9381ff;
   --error-color-primary: #ba181b;
@@ -89,12 +90,12 @@ input:focus {
 .danger-btn {
   background: none;
   border: 2px solid var(--error-color-background);
-  padding: 6px 12px;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   color: var(--error-color-background);
   font-weight: bold;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.8rem;
   transition: ease 0.3s;
 }
 

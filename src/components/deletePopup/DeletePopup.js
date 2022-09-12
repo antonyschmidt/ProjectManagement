@@ -4,17 +4,19 @@ import './DeletePopup.css'
 //firestore
 import { useFirestore } from '../../hooks/useFirestore';
 
-export default function DeletePopup({ setDeletePopupActive, projectId }) {
-    const { response, deleteDocument } = useFirestore('projects')
+export default function DeletePopup({ setDeletePopupActive, id, c }) {
+    const { response, deleteDocument } = useFirestore(c)
     const navigate = useNavigate()
 
     const handleClick = async () => {
 
-        await deleteDocument(projectId)
+        await deleteDocument(id)
 
         if (!response.error) {
             setDeletePopupActive(false)
-            navigate('/')
+            if (c != 'cards') {
+                navigate('/')
+            }
         }
     }
 
@@ -22,7 +24,7 @@ export default function DeletePopup({ setDeletePopupActive, projectId }) {
         <div className='delete-popup-container'>
             <div className='click-container' onClick={() => setDeletePopupActive(false)} />
             <div className='popup'>
-                <p>Are you sure you want to delete this project?</p>
+                <p>Are you sure you want to delete this?</p>
                 <p>This action cant be undone!</p>
                 <div className='btn-container'>
                     <button className="danger-btn" onClick={handleClick}>Delete</button>

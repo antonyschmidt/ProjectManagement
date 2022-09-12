@@ -3,7 +3,7 @@
     width: 100%;
     flex-grow: 1;
     max-width: inherit;
-    padding: 2rem;
+    padding: 6rem 2rem 2rem;
     box-sizing: border-box;
 }
 
@@ -18,7 +18,18 @@
 .show-nav-list p {
     margin-right: 2rem;
     color: var(--text-color);
+}
+
+.show-nav-list p:hover {
+    color: var(--secondary-color);
     cursor: pointer;
+}
+
+.show-nav-list p.active {
+    color: var(--secondary-color);
+    cursor: pointer;
+    text-decoration: underline 2px;
+    text-underline-offset: 1.23rem;
 }
 
 /* break line */

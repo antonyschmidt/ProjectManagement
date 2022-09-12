@@ -92,7 +92,7 @@
     max-height: 500px;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
+    align-items: flex-start;
 }
 
 .nav-list li {
@@ -224,6 +224,7 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    align-items: start;
 }
 
 .workspace-list li {
@@ -234,6 +235,7 @@
     margin: 0.5rem 0;
     margin-right: 0.5rem;
     color: var(--text-color);
+    width: 100%;
 }
 
 .workspace-list li a {
@@ -255,7 +257,7 @@
     right: 1rem;
     color: var(--bg-color);
     font-size: 0.75rem;
-    transition: 0.3;
+    transition: 0.3s;
     z-index: -2;
 
 }
@@ -265,7 +267,7 @@
 }
 
 .workspace-list li a.active .folder-minus-icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     cursor: pointer;
 }
 

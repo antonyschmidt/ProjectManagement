@@ -9,7 +9,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 //components
 import AddProject from './AddProject';
-import DeletePopup from './DeletePopup';
+import DeletePopup from '../deletePopup/DeletePopup';
 import ProjectLink from './ProjectLink';
 //hooks
 import { useCollection } from '../../hooks/useCollection';
@@ -109,7 +109,7 @@ export default function Sidebar() {
 
             </nav>
             {formActive && <AddProject setFormActive={setFormActive} />}
-            {deletePopupActive && projectId && <DeletePopup projectId={projectId} setDeletePopupActive={setDeletePopupActive} />}
+            {deletePopupActive && projectId && <DeletePopup id={projectId} setDeletePopupActive={setDeletePopupActive} c={'projects'} />}
         </>
     )
 }

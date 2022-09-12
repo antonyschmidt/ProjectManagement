@@ -1,0 +1,108 @@
+.header-container {
+    margin-bottom: 1rem;
+}
+
+/* header bar */
+
+.card-header-title {
+    margin-right: auto;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background: var(--secondary-color);
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.more-subcard-icon {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.more-subcard-icon:hover {
+    transform: scale(1.1);
+    color: var(--secondary-button-color);
+}
+
+/* more bar */
+
+.icon-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.header-more-icon {
+    margin-left: 2px;
+}
+
+.header-more-icon:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* active */
+
+.header-bar-active {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.more-bar-active {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* card form */
+
+.card-form-container {
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    padding: 0.63rem 1rem;
+    border-radius: 1rem;
+}
+
+.card-form-container form {
+    display: flex;
+    align-items: center;
+}
+
+.card-form-container form button {
+    background: none;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.card-form-container form button:hover {
+    cursor: pointer;
+    background-color: var(--break-color);
+    border-radius: 4px;
+}
+
+.card-form-container form input {
+    padding: 0;
+    margin: 0;
+    width: 9rem;
+    font-weight: bolder;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+}
+
+.check-icon {
+    color: white;
+    font-size: 1rem;
+}
