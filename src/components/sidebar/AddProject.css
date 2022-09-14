@@ -1,4 +1,4 @@
-.addProject-container {
+.add-project-container {
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -9,20 +9,49 @@
     z-index: 1;
 }
 
-.addProject-form {
-    display: flex;
-    flex-direction: column;
-    padding: 5rem 8rem;
+.add-project-form-container {
+    padding: 3rem 5rem;
+    width: 27rem;
     background-color: white;
     border-radius: 1rem;
     z-index: 2;
 }
 
-.addProject-form label {
+.add-project-form-container h3 {
+    font-weight: bolder;
+}
+
+.add-project-form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
-    align-items: center;
+}
+
+.input-container {
+    display: flex;
+}
+
+.add-project-form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    align-items: flex-start;
+    font-size: 0.7rem;
+    color: var(--text-color);
+}
+
+.add-project-form input {
+    color: var(--text-color);
+    border: 1px solid var(--break-color);
+}
+
+.select-input {
+    margin-top: 0.35rem;
+    width: 11rem;
+}
+
+.add-project-form-left-container {
+    margin-right: 4rem;
+    width: 100%;
 }
 
 .click-container {
@@ -32,6 +61,11 @@
     cursor: pointer;
 }
 
-.dueDate-input {
-    width: 88%;
+.due-date-input {
+    width: 10rem;
+}
+
+.add-project-btn-container {
+    display: flex;
+    justify-content: flex-end;
 }

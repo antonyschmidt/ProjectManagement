@@ -4,7 +4,7 @@ import { FaDiceD6 } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
-import { FaFolder } from "react-icons/fa";
+import { IoIosSettings } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 //components
@@ -68,9 +68,9 @@ export default function Sidebar() {
                         </li>}
                     {user &&
                         <li>
-                            <Link to='/show'>
-                                <FaFolder className='projects-icon' />
-                                <p>Projects</p>
+                            <Link to=''>
+                                <IoIosSettings className='settings-icon' />
+                                <p>Settings</p>
                             </Link>
                         </li>}
                     {!user &&

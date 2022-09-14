@@ -60,7 +60,7 @@ export default function Login() {
                     <p>or</p>
                 </div>
                 <button className="google-btn" onClick={() => googleSignUp()}>
-                    Log In with Google <FcGoogle className="google-icon" />
+                    Login with Google <FcGoogle className="google-icon" />
                 </button>
             </div>
         </div>

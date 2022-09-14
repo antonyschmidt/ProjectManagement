@@ -1,11 +1,19 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+//services
+import Select from 'react-select';
 //hooks
 import { useFirestore } from '../../hooks/useFirestore'
 import { useAuthContext } from '../../hooks/useAuthContext'
 //styles
 import './AddProject.css'
 import { useEffect } from 'react'
+
+const options = [
+    { value: 'mark', label: 'mark' },
+    { value: 'stefanie', label: 'stefanie' },
+    { value: 'john', label: 'john' },
+];
 
 export default function AddProject({ setFormActive }) {
     const { response, addDocument } = useFirestore('projects')
@@ -14,6 +22,7 @@ export default function AddProject({ setFormActive }) {
     const [description, setDescription] = useState('')
     const { user } = useAuthContext()
     const navigate = useNavigate()
+    const [selectedOption, setSelectedOption] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -41,40 +50,64 @@ export default function AddProject({ setFormActive }) {
     }, [response])
 
     return (
-        <div className='addProject-container'>
+        <div className='add-project-container'>
             <div className='click-container' onClick={() => setFormActive(false)} />
-            <form className='addProject-form' onSubmit={handleSubmit}>
-                <label>
-                    <span>Project Name</span>
-                    <input
-                        type="text"
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
-                    />
-                </label>
-                <label>
-                    <span>Due Date</span>
-                    <input
-                        className='dueDate-input'
-                        type="date"
-                        onChange={(e) => setDueDate(e.target.value)}
-                        value={dueDate}
-                    />
-                </label>
-                <label>
-                    <span>Description</span>
-                    <textarea
-                        cols="22"
-                        rows="5"
-                        onChange={(e) => setDescription(e.target.value)}
-                        value={description}
-                    />
-                </label>
-                <button className='btn'>
-                    Create Project
-                </button>
-                {response.error && <p className='error'>{response.error}</p>}
-            </form>
+            <div className='add-project-form-container'>
+                <h3>Create new project</h3>
+                <form className='add-project-form' onSubmit={handleSubmit}>
+                    <div className="input-container">
+                        <div className="add-project-form-left-container">
+                            <label>
+                                <span>Project Name</span>
+                                <input
+                                    className='project-name-input'
+                                    type="text"
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    value={title}
+                                />
+                            </label>
+                            <label>
+                                <span>Description</span>
+                                <textarea
+                                    className='description-input'
+                                    cols="20"
+                                    rows="4"
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    value={description}
+                                />
+                            </label>
+                        </div>
+                        <div className="add-project-form-right-container">
+                            <label>
+                                <span>Due Date</span>
+                                <input
+                                    className='due-date-input'
+                                    type="date"
+                                    onChange={(e) => setDueDate(e.target.value)}
+                                    value={dueDate}
+                                />
+                            </label>
+                            <label >
+                                <span>Assign Users</span>
+                                <Select
+                                    className='select-input'
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={options}
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div className="seperation-line" />
+                    <div className="add-project-btn-container">
+                        <button className='btn'>
+                            Create Project
+                        </button>
+                    </div>
+                    {response.error && <p className='error'>{response.error}</p>}
+                </form>
+            </div>
+
         </div >
     )
 }

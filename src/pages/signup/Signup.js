@@ -50,7 +50,7 @@ export default function Signup() {
                             value={password}
                         />
                     </label>
-                    <button className="form-btn">Sign Up</button>
+                    <button className="form-btn">Signup</button>
                     {inputErr && <p className="error">{inputErr}</p>}
                     {error && <p className="error">{error}</p>}
                     {isPending && <p className="isPending">Loading ...</p>}
@@ -60,7 +60,7 @@ export default function Signup() {
                     <p>or</p>
                 </div>
                 <button className="google-btn" onClick={() => googleSignUp()}>
-                    Sign Up with Google <FcGoogle className="google-icon" />
+                    Signup with Google <FcGoogle className="google-icon" />
                 </button>
             </div>
         </div>
