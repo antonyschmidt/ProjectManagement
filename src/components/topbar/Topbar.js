@@ -6,6 +6,7 @@ import profileTwo from '../../assets/woman2.jpg'
 import profileThree from '../../assets/woman3.jpg'
 //icons
 import { FaSearch } from "react-icons/fa";
+import { FaDiceD6 } from "react-icons/fa";
 //hooks
 import { useLogout } from '../../hooks/useLogout';
 
@@ -14,6 +15,9 @@ export default function Topbar() {
 
     return (
         <nav className='topbar'>
+            <div className='title-container-secondary'>
+                <FaDiceD6 className='logo-secondary' />
+            </div>
             <div className='searchbar'>
                 <i><FaSearch /></i>
                 <input type="text" placeholder='Search' className='topbar-searchbar' />
