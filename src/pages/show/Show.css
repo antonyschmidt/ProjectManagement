@@ -1,9 +1,10 @@
 .show-container {
-    height: 100%;
     width: 100%;
-    flex-grow: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     max-width: inherit;
-    padding: 6rem 2rem 2rem;
+    padding: 2rem 2rem 2rem;
     box-sizing: border-box;
 }
 
@@ -39,4 +40,12 @@
     height: 1px;
     background-color: var(--break-color);
     margin: 1rem 0 2rem;
+}
+
+/* main show section */
+
+.main-show-section {
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow-y: scroll;
 }

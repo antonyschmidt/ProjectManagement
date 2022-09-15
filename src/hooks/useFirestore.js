@@ -1,7 +1,7 @@
 import { useState, useReducer } from "react"
 //firebase
 import { db } from '../firebase/config'
-import { collection, addDoc, doc, deleteDoc, updateDoc, arrayUnion } from "firebase/firestore"
+import { collection, addDoc, doc, deleteDoc, updateDoc } from "firebase/firestore"
 import { useEffect } from "react"
 
 
@@ -52,6 +52,8 @@ export const useFirestore = (c) => {
                 throw new Error('Could not create new Project')
             }
 
+            console.log(addedDocument)
+
             dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
         } catch (err) {
             dispatchIfNotCancelled({ type: 'ERROR', payload: 'Could not add document' })
@@ -61,8 +63,6 @@ export const useFirestore = (c) => {
 
     const updateDocument = async (id, update) => {
         dispatch({ type: 'IS_PENDING' })
-
-        console.log(update)
 
         try {
 

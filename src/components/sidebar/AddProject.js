@@ -16,16 +16,22 @@ const options = [
 ];
 
 export default function AddProject({ setFormActive }) {
-    const { response, addDocument } = useFirestore('projects')
+    const { addDocument, response } = useFirestore('projects')
+    const [error, setError] = useState(null)
     const [title, setTitle] = useState('')
     const [dueDate, setDueDate] = useState('')
     const [description, setDescription] = useState('')
+    const [selectedOption, setSelectedOption] = useState([]);
     const { user } = useAuthContext()
     const navigate = useNavigate()
-    const [selectedOption, setSelectedOption] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setError(null)
+
+        if (!title || !description || !dueDate || !selectedOption) {
+            return setError('Please fill out all input fields')
+        }
 
         const newProject = {
             title: title,
@@ -37,12 +43,18 @@ export default function AddProject({ setFormActive }) {
 
 
         await addDocument(newProject)
+
     }
 
     useEffect(() => {
 
         if (response.document) {
+
             setTitle('')
+            setDueDate('')
+            setDescription('')
+            setSelectedOption(null)
+
             setFormActive(false)
             navigate(`projects/${response.document.id}`)
         }
@@ -101,9 +113,10 @@ export default function AddProject({ setFormActive }) {
                     <div className="seperation-line" />
                     <div className="add-project-btn-container">
                         <button className='btn'>
-                            Create Project
+                            Submit
                         </button>
                     </div>
+                    {error && <p className='error'>{error}</p>}
                     {response.error && <p className='error'>{response.error}</p>}
                 </form>
             </div>

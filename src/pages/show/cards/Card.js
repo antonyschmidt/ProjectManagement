@@ -41,7 +41,7 @@ export default function Card({ project }) {
 
     const handleClick = async () => {
 
-        if (cards.length < 7) {
+        if (cards.length < 10) {
             await addDocument(newCard)
         }
     }

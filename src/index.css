@@ -200,14 +200,14 @@ input:focus {
   display: none;
 }
 
-/* 
-::-webkit-scrollbar {
+
+/* ::-webkit-scrollbar {
   width: 0.2rem;
   padding: 1rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--bg-color);
+  background-color: var(--primary-color);
   border-radius: 1rem;
 }
 
