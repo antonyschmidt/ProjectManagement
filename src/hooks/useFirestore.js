@@ -1,7 +1,7 @@
 import { useState, useReducer } from "react"
 //firebase
 import { db } from '../firebase/config'
-import { collection, addDoc, doc, deleteDoc, updateDoc } from "firebase/firestore"
+import { collection, addDoc, doc, deleteDoc, updateDoc, where, query, getDocs } from "firebase/firestore"
 import { useEffect } from "react"
 
 
@@ -82,6 +82,7 @@ export const useFirestore = (c) => {
         try {
 
             await deleteDoc(doc(db, c, id));
+
 
             dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
         } catch (error) {

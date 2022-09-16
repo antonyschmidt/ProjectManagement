@@ -5,6 +5,23 @@
     display: flex;
 }
 
+.card-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* .card-container::-webkit-scrollbar-track {
+    background: white;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+    background: var(--break-color);
+    border: 0.3rem solid white;
+    border-radius: 1rem;
+} */
+
+
+
+
 .card {
     margin-right: 1rem;
     padding: 1.5rem;

@@ -47,5 +47,5 @@
 .main-show-section {
     height: auto;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }

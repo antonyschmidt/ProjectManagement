@@ -194,27 +194,6 @@ input:focus {
   justify-content: center;
 }
 
-/*  scrollbar   */
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-
-/* ::-webkit-scrollbar {
-  width: 0.2rem;
-  padding: 1rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: 1rem;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--break-color);
-} */
-
 textarea {
   border-radius: 0.5rem;
   border: 1px solid var(--break-color);
@@ -225,4 +204,21 @@ textarea {
 textarea:focus {
   outline: none;
   border: 1px solid var(--secondary-color);
+}
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--break-color);
+  border: 0.3rem solid var(--bg-color);
+  border-radius: 1rem;
 }

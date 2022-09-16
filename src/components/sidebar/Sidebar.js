@@ -109,7 +109,7 @@ export default function Sidebar() {
 
             </nav>
             {formActive && <AddProject setFormActive={setFormActive} />}
-            {deletePopupActive && projectId && <DeletePopup id={projectId} setDeletePopupActive={setDeletePopupActive} c={'projects'} />}
+            {deletePopupActive && projectId && <DeletePopup id={projectId} setDeletePopupActive={setDeletePopupActive} c={'projects'} secondaryCollection={'cards'} />}
         </>
     )
 }
