@@ -5,23 +5,17 @@ import './DeletePopup.css'
 import { useFirestore } from '../../hooks/useFirestore';
 import { useDeleteSecondary } from '../../hooks/useDeleteSecondary';
 
-export default function DeletePopup({ setDeletePopupActive, id, c, secondaryCollection }) {
+export default function DeletePopup({ setDeletePopupActive, id, c }) {
     const { response, deleteDocument } = useFirestore(c)
-    const { deleteSecondary, error } = useDeleteSecondary(secondaryCollection)
     const navigate = useNavigate()
 
     const handleClick = async () => {
 
-        await deleteSecondary(id)
+        await deleteDocument(id)
 
-        if (!error) {
-            await deleteDocument(id)
-        }
-
-
-        if (!response.error && !error) {
+        if (!response.error) {
             setDeletePopupActive(false)
-            if (c != 'cards') {
+            if (!c.includes('cards')) {
                 navigate('/')
             }
         }
@@ -36,7 +30,6 @@ export default function DeletePopup({ setDeletePopupActive, id, c, secondaryColl
                 <div className='btn-container'>
                     <button className="danger-btn" onClick={handleClick}>Delete</button>
                     <button className="btn" onClick={() => setDeletePopupActive(false)}>Cancel</button>
-                    {error && <p className='error'>{error}</p>}
                 </div>
             </div>
         </div>

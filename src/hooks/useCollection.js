@@ -19,7 +19,6 @@ export const useCollection = (c, q) => {
             ref = query(collection(db, c), where(...q))
         }
 
-
         try {
             setError(null)
             setIsPending(null)
