@@ -1,7 +1,7 @@
 import { useState, useReducer } from "react"
 //firebase
 import { db } from '../firebase/config'
-import { collection, addDoc, doc, deleteDoc, updateDoc, } from "firebase/firestore"
+import { collection, addDoc, doc, deleteDoc, updateDoc, where, query, getDocs } from "firebase/firestore"
 import { useEffect } from "react"
 
 
@@ -45,14 +45,14 @@ export const useFirestore = (c) => {
 
         try {
 
-            let ref = collection(db, c)
-
-            const addedDocument = await addDoc(ref, { ...doc })
+            const addedDocument = await addDoc(collection(db, c), { ...doc })
 
 
             if (!addedDocument) {
                 throw new Error('Could not create new Project')
             }
+
+            console.log(addedDocument)
 
             dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
         } catch (err) {

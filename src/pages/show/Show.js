@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 //components
-import CardContainer from './cards/CardContainer'
+import Card from './cards/Card'
 //hooks
 import { useDoc } from '../../hooks/useDoc'
 //styles
@@ -26,7 +26,7 @@ export default function Show() {
                 <div className='break-line' />
             </div>
             <div className='main-show-section'>
-                {project && <CardContainer project={project} />}
+                {project && <Card project={project} />}
                 {error && <p className='error'>{error}</p>}
             </div>
         </div>
