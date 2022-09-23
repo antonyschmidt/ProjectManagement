@@ -15,12 +15,12 @@ import { useFirestore } from "../../../hooks/useFirestore";
 import { useEffect } from "react";
 
 
-export default function CardHeader({ card }) {
+export default function CardHeader({ card, project }) {
     const [moreOpen, setMoreOpen] = useState(false)
     const [deletePopupActive, setDeletePopupActive] = useState(false)
     const [edit, setEdit] = useState(false)
     const [editCardValue, setEditCardValue] = useState(card.status)
-    const { updateDocument } = useFirestore('cards')
+    const { updateDocument } = useFirestore('projects')
     const { domNode } = useClickOutside(() => {
         setMoreOpen(false)
         setEdit(false)
@@ -33,8 +33,23 @@ export default function CardHeader({ card }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        await updateDocument(card.id, {
-            status: editCardValue
+        card.status = editCardValue
+
+        let result = []
+
+        project.cards.map((card) => {
+            result.push(card)
+        })
+
+        const cardIndex = result.findIndex((c) => c.cId === card.cId)
+
+        result[cardIndex].status = editCardValue
+
+
+        await updateDocument(project.id, {
+            cards: [
+                ...result
+            ]
         })
 
         setEdit(false)
@@ -66,7 +81,7 @@ export default function CardHeader({ card }) {
                         <MdDelete className="header-more-icon" onClick={() => setDeletePopupActive(true)} />
                         <MdClose className="header-more-icon" onClick={() => setMoreOpen(false)} />
                     </div>}
-                    {deletePopupActive && <DeletePopup setDeletePopupActive={setDeletePopupActive} id={card.id} c={'cards'} />}
+                    {deletePopupActive && <DeletePopup setDeletePopupActive={setDeletePopupActive} cId={card.cId} project={project} />}
                 </div>}
             </div>
         </>

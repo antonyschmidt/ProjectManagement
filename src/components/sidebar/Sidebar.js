@@ -7,6 +7,7 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
+import { IoMdAddCircle } from "react-icons/io";
 //components
 import AddProject from './AddProject';
 import DeletePopup from '../deletePopup/DeletePopup';
@@ -93,7 +94,7 @@ export default function Sidebar() {
                         <div className='seperation-line' />
                         <div className='workspace-nav'>
                             <p>Workspace</p>
-                            <i className='add-icon' onClick={() => setFormActive(true)}>+</i>
+                            <i className='add-icon' onClick={() => setFormActive(true)}><IoMdAddCircle /></i>
                         </div>
                         <ul className='workspace-list'>
                             {data && <ProjectLink setDeletePopupActive={setDeletePopupActive} setProjectId={setProjectId} projects={data} />}

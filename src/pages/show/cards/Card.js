@@ -12,49 +12,54 @@ import { timestamp } from '../../../firebase/config';
 //styles
 import './Card.css'
 import { useEffect } from 'react';
+import { NonceProvider } from 'react-select';
 
 
 export default function Card({ project }) {
-    const { response, addDocument, updateDocument } = useFirestore('cards')
-    const [query, setQuery] = useState(null)
-    const { data: cards, error } = useCollection(
-        'cards',
-        query
-    )
+    const { response, updateDocument } = useFirestore('projects')
 
 
-    useEffect(() => {
-
-        const q = ['pid', '==', project.id]
-
-        setQuery(q)
-    }, [project])
+    const current = new Date()
+    const date = `${current.getDate()}.${current.getMonth() + 1}.${current.getFullYear()}`
 
 
     const newCard = {
         status: 'untitled',
-        timestamp: timestamp,
-        pid: project.id,
-        subcards: []
+        color: 'green',
+        createdAt: date,
+        cId: Math.random() * 1000
     }
 
 
     const handleClick = async () => {
 
-        if (cards.length < 8) {
-            await addDocument(newCard)
+        let cards = []
+
+        if (project.cards) {
+            cards = project.cards
         }
+
+        await updateDocument(project.id, {
+
+            cards: [
+                ...cards,
+                newCard
+            ]
+        })
+
     }
 
 
-    const addSubcardClick = async (id, subcards) => {
+    const addSubcardClick = async (cId, status) => {
 
-        const current = new Date()
-        const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
 
-        console.log(date)
+        let subcards = []
 
-        await updateDocument(id, {
+        if (project.subcards) {
+            subcards = project.subcards
+        }
+
+        await updateDocument(project.id, {
 
             subcards: [
                 ...subcards, {
@@ -62,7 +67,10 @@ export default function Card({ project }) {
                     description: '',
                     assignedUsers: [],
                     rating: 'low',
+                    status: status,
+                    category: 'none',
                     createdAt: date,
+                    pid: cId,
                     id: Math.random() * 1000
                 }
             ]
@@ -72,15 +80,11 @@ export default function Card({ project }) {
 
     return (
         <div className='card-container'>
-            {cards && cards.map((card) => (
-                <div key={card.id} className="card">
-                    <CardHeader card={card} />
-                    {card.subcards.length > 0 && <div className="subcards-container">
-                        {card.subcards.map((subcards) => (
-                            <Subcard key={subcards.id} subcards={subcards} />
-                        ))}
-                    </div>}
-                    <button className='subcard-btn' onClick={() => addSubcardClick(card.id, card.subcards)}>
+            {project.cards && project.cards.map((card) => (
+                <div key={card.cId} className="card">
+                    <CardHeader card={card} project={project} />
+                    <Subcard cId={card.cId} subcards={project.subcards} project={project} />
+                    <button className='subcard-btn' onClick={() => addSubcardClick(card.cId, card.status)}>
                         + Add Card
                     </button>
                 </div>
@@ -88,8 +92,7 @@ export default function Card({ project }) {
             <div className="add-card-container" onClick={handleClick}>
                 <BiMessageSquareAdd className="add-card-icon" />
             </div>
-            {error && <p className='error'>{error}</p>}
             {response.error && <p className='error'>{response.error}</p>}
-        </div>
+        </div >
     )
 }

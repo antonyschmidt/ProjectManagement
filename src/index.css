@@ -13,6 +13,12 @@
   --secondary-button-color: #9381ff;
   --error-color-primary: #ba181b;
   --error-color-background: #fe6d73;
+  --priority-color-low: #62cf2f;
+  --priority-color-low-secondary: #c5f1b1;
+  --priority-color-mid: #ffbc03;
+  --priority-color-mid-secondary: #ffe8a8;
+  --priority-color-high: #ff7373;
+  --priority-color-high-secondary: #ffbaba;
 }
 
 /* base styles */
@@ -204,6 +210,67 @@ textarea {
 textarea:focus {
   outline: none;
   border: 1px solid var(--secondary-color);
+}
+
+/* priority pill */
+
+.priority-pill-low {
+  color: var(--priority-color-low);
+  background-color: var(--priority-color-low-secondary);
+  width: fit-content;
+  padding: 0 0.5rem;
+  border-radius: 0.4rem;
+  font-weight: bolder;
+}
+
+.priority-pill-mid {
+  color: var(--priority-color-mid);
+  background-color: var(--priority-color-mid-secondary);
+  width: fit-content;
+  padding: 0 0.5rem;
+  border-radius: 0.4rem;
+  font-weight: bolder;
+}
+
+.priority-pill-high {
+  color: var(--priority-color-high);
+  background-color: var(--priority-color-high-secondary);
+  width: fit-content;
+  padding: 0 0.5rem;
+  border-radius: 0.4rem;
+  font-weight: bolder;
+}
+
+/* priority pill subcard */
+
+.priority-pill-low-subcard {
+  color: var(--priority-color-low);
+  background-color: var(--priority-color-low-secondary);
+  width: fit-content;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.6rem;
+  border-radius: 0.4rem;
+  font-weight: bolder;
+}
+
+.priority-pill-mid-subcard {
+  color: var(--priority-color-mid);
+  background-color: var(--priority-color-mid-secondary);
+  width: fit-content;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.6rem;
+  border-radius: 0.4rem;
+  font-weight: bolder;
+}
+
+.priority-pill-high-subcard {
+  color: var(--priority-color-high);
+  background-color: var(--priority-color-high-secondary);
+  width: fit-content;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.6rem;
+  border-radius: 0.4rem;
+  font-weight: bolder;
 }
 
 /* scrollbar */

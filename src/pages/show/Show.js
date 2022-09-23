@@ -10,7 +10,6 @@ export default function Show() {
     const { id } = useParams()
     const { data: project, error, isPending } = useDoc('projects', id)
 
-
     return (
         <div className='show-container'>
             <div className='title-nav-section'>

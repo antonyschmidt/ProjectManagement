@@ -69,6 +69,7 @@
 }
 
 .subcard {
+    position: relative;
     background-color: #fff;
     padding: 0.7rem;
     border-radius: 0.5rem;
@@ -82,6 +83,25 @@
     border: 0.5px solid var(--break-color);
 }
 
+.subcard-delete-icon {
+    position: absolute;
+    right: 0.3rem;
+    top: 0.3rem;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.subcard-delete-icon:hover {
+    color: var(--text-color);
+    background-color: var(--hover-color);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.subcard:hover .subcard-delete-icon {
+    display: block;
+}
+
 .subcard:last-child {
     margin-bottom: 0;
 }
@@ -91,10 +111,10 @@
 }
 
 .subcard-top h4 {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bolder;
     color: var(--text-color);
-    margin-bottom: 0.2rem;
+    margin: 0.2rem 0 0.3rem;
 }
 
 .seperation-line-card {
@@ -125,8 +145,8 @@ ul {
 .assigned-users ul li img {
     box-sizing: border-box;
     object-fit: cover;
-    height: 2rem;
-    width: 2rem;
+    height: 1.5rem;
+    width: 1.5rem;
     border-radius: 50px;
     border: 0.9px solid white;
 }
@@ -136,20 +156,9 @@ ul {
     align-items: center;
 }
 
-.subcard-rating-display {
-    padding: 0.1rem 0.5rem;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    font-size: 0.6rem;
-    font-weight: bold;
-}
-
 .assigned-user-one {
     position: relative;
-    left: 1rem;
+    left: 0.5rem;
 }
 
 /* subcard bottom */

@@ -198,8 +198,9 @@
 .add-icon {
     margin-left: auto;
     margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: var(--text-color);
+    padding: 0.05rem 0.27rem 0;
+    font-size: 1rem;
+    color: var(--break-color);
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     transition: 0.3s ease;
@@ -207,7 +208,7 @@
 
 .add-icon:hover {
     color: var(--secondary-color);
-    transform: scale(2);
+    border-radius: 0.5rem;
 }
 
 /* workspace ul */
@@ -231,6 +232,10 @@
     margin-right: 0.5rem;
     color: var(--text-color);
     width: 100%;
+}
+
+.workspace-list li:hover a {
+    color: var(--secondary-color);
 }
 
 .workspace-list li a {

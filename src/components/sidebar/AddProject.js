@@ -39,6 +39,8 @@ export default function AddProject({ setFormActive }) {
             description: description,
             dueDate: new Date(dueDate),
             assignedUsers: [],
+            cards: [],
+            subcards: []
         }
 
 

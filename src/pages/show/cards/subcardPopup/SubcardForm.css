@@ -1,0 +1,245 @@
+.popup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 70%);
+    z-index: 1;
+}
+
+
+.click-outside-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+}
+
+.subcard-show-container {
+    padding: 2rem;
+    width: 27rem;
+    background-color: white;
+    border-radius: 1rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.subcard-show-container input {
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding: 1rem 0 0;
+    margin: 0.5rem 0;
+}
+
+.subcard-show-container input:focus {
+    border: none;
+}
+
+.subcard-show-section-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.subcard-show-section-top svg {
+    margin-right: auto;
+    color: var(--text-color);
+    transition: 0.3s ease;
+}
+
+.resize-icon:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.date-section {
+    display: flex;
+    align-items: center;
+}
+
+.date-section svg {
+    margin-right: 0.3rem;
+    font-size: 1rem;
+}
+
+.createdAt {
+    margin-left: 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.subcard-show-section-top p {
+    font-size: 0.7rem;
+}
+
+.subcard-show-section-one {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.widget-container {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    min-width: 2.2rem;
+}
+
+.widget-container svg {
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.widget-container svg:first-child {
+    margin-right: auto;
+}
+
+.widget-container svg:hover {
+    background-color: var(--hover-color);
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+/* section two aka. main */
+
+.subcard-show-section-two {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.key-value-container {
+    display: flex;
+    margin: 0.7rem 0;
+}
+
+.key-value-container:first-child {
+    margin-top: 0;
+}
+
+.key-value-container:last-child {
+    margin-bottom: 0;
+}
+
+/* key */
+
+.key {
+    display: flex;
+    align-items: center;
+    min-width: 7rem;
+}
+
+.key svg {
+    color: var(--text-color);
+    margin-right: 0.5rem;
+}
+
+/* value */
+
+.value {
+    padding: 0.2rem 0.8rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.value:hover {
+    background-color: var(--bg-color);
+    cursor: pointer;
+}
+
+.value-click {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+/* section three */
+
+.subcard-show-section-three {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.subcard-show-section-three p:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.section-three-links {
+    display: flex;
+    width: 100%;
+}
+
+.comment-nav-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.comment-nav-container p:last-child:hover {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.section-three-nav-container .seperation-line {
+    margin: 0.75rem 0;
+}
+
+.description-tag-section-three {
+    color: var(--secondary-color);
+    text-decoration: underline 1px;
+    text-underline-offset: 1.08rem;
+}
+
+.subcard-show-section-three textarea {
+    width: 96%;
+    height: 7rem;
+    resize: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-family: inherit;
+}
+
+.subcard-show-section-three textarea:focus {
+    border: none;
+}
+
+.comment-nav-container p:last-child {
+    margin-left: 0.4rem;
+    font-size: 0.6rem;
+    align-self: center;
+    background-color: var(--hover-color);
+    border-radius: 0.4rem;
+    padding: 0.1rem 0.4rem;
+}
+
+/* buttons */
+
+.category {
+    color: white;
+    background-color: var(--primary-color);
+    width: fit-content;
+    padding: 0 0.5rem;
+    border-radius: 0.4rem;
+    font-weight: bolder;
+}
+
+.status {
+    color: white;
+    background-color: var(--secondary-color);
+    width: fit-content;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.7rem;
+    font-weight: bolder;
+}
