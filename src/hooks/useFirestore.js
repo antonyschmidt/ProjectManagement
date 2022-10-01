@@ -52,8 +52,6 @@ export const useFirestore = (c) => {
                 throw new Error('Could not create new Project')
             }
 
-            console.log(addedDocument)
-
             dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
         } catch (err) {
             dispatchIfNotCancelled({ type: 'ERROR', payload: 'Could not add document' })

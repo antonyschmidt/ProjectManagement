@@ -4,7 +4,7 @@ import './DeletePopup.css'
 //firestore
 import { useFirestore } from '../../hooks/useFirestore';
 
-export default function DeletePopup({ setDeletePopupActive, subId, cId, id, project }) {
+export default function DeletePopup({ setDeletePopupActive, setSubcardFormActive, subId, cId, id, project }) {
     const { response, deleteDocument, updateDocument } = useFirestore('projects')
     const navigate = useNavigate()
 
@@ -24,6 +24,9 @@ export default function DeletePopup({ setDeletePopupActive, subId, cId, id, proj
                     ...filteredSubcards
                 ]
             })
+
+            setDeletePopupActive(false)
+            setSubcardFormActive(false)
         }
 
 

@@ -74,6 +74,7 @@ export default function AddProject({ setFormActive }) {
                             <label>
                                 <span>Project Name</span>
                                 <input
+                                    maxLength='15'
                                     className='project-name-input'
                                     type="text"
                                     onChange={(e) => setTitle(e.target.value)}

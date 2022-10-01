@@ -12,28 +12,27 @@ export default function EditRating({ rating, val, setRatingEdit, project, subcar
 
     const handleClick = async (rating) => {
 
-        if (rating !== subcard.rating) {
 
-            let result = []
+        let result = []
 
-            project.subcards.map((subcard) => {
-                result.push(subcard)
-            })
+        project.subcards.map((subcard) => {
+            result.push(subcard)
+        })
 
-            const SubCardIndex = result.findIndex((s) => s.id === subcard.id)
+        const SubCardIndex = result.findIndex((s) => s.id === subcard.id)
 
-            result[SubCardIndex].rating = rating
+        result[SubCardIndex].rating = rating
 
-            await updateDocument(project.id, {
-                subcards: [
-                    ...result
-                ]
-            })
+        await updateDocument(project.id, {
+            subcards: [
+                ...result
+            ]
+        })
 
-            setRating(rating)
-            setRatingEdit(false)
+        setRating(rating)
+        setRatingEdit(false)
 
-        }
+
     }
 
 

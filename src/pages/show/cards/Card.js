@@ -1,35 +1,26 @@
-import { useState } from 'react'
+import { useState } from "react";
 //react icons
 import { BiMessageSquareAdd } from "react-icons/bi";
 //hooks
-import { useCollection } from '../../../hooks/useCollection';
 import { useFirestore } from "../../../hooks/useFirestore";
 //components
 import Subcard from './Subcard';
 import CardHeader from './CardHeader'
-//firebase
-import { timestamp } from '../../../firebase/config';
 //styles
 import './Card.css'
-import { useEffect } from 'react';
-import { NonceProvider } from 'react-select';
 
 
 export default function Card({ project }) {
     const { response, updateDocument } = useFirestore('projects')
-
-
     const current = new Date()
     const date = `${current.getDate()}.${current.getMonth() + 1}.${current.getFullYear()}`
 
-
     const newCard = {
         status: 'untitled',
-        color: 'green',
+        color: '#cfc7c2',
         createdAt: date,
         cId: Math.random() * 1000
     }
-
 
     const handleClick = async () => {
 
@@ -63,7 +54,7 @@ export default function Card({ project }) {
 
             subcards: [
                 ...subcards, {
-                    title: 'Branding',
+                    title: 'untitled',
                     description: '',
                     assignedUsers: [],
                     rating: 'low',

@@ -10,16 +10,22 @@ import { TbResize } from "react-icons/tb";
 import { AiOutlineClockCircle } from "react-icons/ai";
 //hooks
 import { useFirestore } from '../../../../hooks/useFirestore'
+import { useDoc } from '../../../../hooks/useDoc';
+import { useParams } from 'react-router-dom';
 //services
 import Select from 'react-select';
 //components
+import DeletePopup from "../../../../components/deletePopup/DeletePopup";
 import EditRating from './EditRating';
 import EditStatus from './EditStatus';
 //styles
 import './SubcardForm.css'
 import { useClickOutside } from '../../../../hooks/useClickOutside';
+import { useEffect } from 'react';
 
-export default function SubcardForm({ setSubcardFormActive, subcard, project, cId }) {
+export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
+    const { id } = useParams()
+    const { data: project, error } = useDoc('projects', id)
     const { updateDocument } = useFirestore('projects')
     const { domNode } = useClickOutside(() => {
         handleSubmit()
@@ -34,6 +40,11 @@ export default function SubcardForm({ setSubcardFormActive, subcard, project, cI
     // edit states
     const [ratingEdit, setRatingEdit] = useState(false)
     const [statusEdit, setStatusEdit] = useState(false)
+    const [currentCId, setCurrentCId] = useState(cId)
+    const [currentCard, setCurrentCard] = useState(null)
+    // delete form state
+    const [subId, setSubId] = useState(null)
+    const [deletePopupActive, setDeletePopupActive] = useState(false)
 
 
     const handleSubmit = async (e) => {
@@ -51,7 +62,7 @@ export default function SubcardForm({ setSubcardFormActive, subcard, project, cI
 
             const SubCardIndex = result.findIndex((s) => s.id === subcard.id)
 
-            result[SubCardIndex].title = title
+            result[SubCardIndex].title = (title.length > 0 ? title : 'untitled')
 
             await updateDocument(project.id, {
                 subcards: [
@@ -61,8 +72,49 @@ export default function SubcardForm({ setSubcardFormActive, subcard, project, cI
 
         }
 
-        setTitle(subcard.title)
+        if (description !== subcard.description) {
+
+            let result = []
+
+            project.subcards.map((subcard) => {
+                result.push(subcard)
+            })
+
+            const SubCardIndex = result.findIndex((s) => s.id === subcard.id)
+
+            result[SubCardIndex].description = description
+
+            await updateDocument(project.id, {
+                subcards: [
+                    ...result
+                ]
+            })
+
+        }
+
+        setDescription(description)
+        setTitle(title.length > 0 ? title : 'untitled')
     }
+
+    const handleDelete = (id) => {
+
+        setSubId(id)
+        setDeletePopupActive(true)
+    }
+
+    useEffect(() => {
+
+        if (project) {
+            const result = project.cards.find((card) => {
+                return card.cId === cId
+            })
+
+            setCurrentCard(result)
+        }
+
+    }, [project, cId])
+
+
 
     const chooseColor = (i) => {
         switch (i) {
@@ -76,95 +128,104 @@ export default function SubcardForm({ setSubcardFormActive, subcard, project, cI
     }
 
     return (
-        <div className="popup-container">
-            <div className='click-outside-container' onClick={() => setSubcardFormActive(false)} />
-            <div className='subcard-show-container'>
-                <div className="subcard-show-section-top">
-                    <TbResize className='resize-icon' />
-                    <div className="date-section">
-                        <AiOutlineClockCircle />
-                        <p>Created</p>
-                        <p className='createdAt'>{subcard.createdAt}</p>
-                    </div>
-                </div>
-                <div className="subcard-show-section-one">
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            ref={domNode}
-                            type="text"
-                            onChange={(e) => setTitle(e.target.value)}
-                            value={title}
-                            spellCheck='false'
-                        />
-                    </form>
-                    <div className="widget-container">
-                        <AiOutlineHeart />
-                        <MdDelete />
-                    </div>
-                </div>
-                <div className="subcard-show-section-two">
-                    <div className="key-value-container">
-                        <div className="key">
-                            <BiCategoryAlt />
-                            <p>category</p>
-                        </div>
-                        <div className="value">
-                            <p className='category'>{category}</p>
+        <>
+            <div className="popup-container">
+                <div className='click-outside-container' onClick={() => setSubcardFormActive(false)} />
+                <div className='subcard-show-container'>
+                    <div className="subcard-show-section-top">
+                        <TbResize className='resize-icon' />
+                        <div className="date-section">
+                            <AiOutlineClockCircle />
+                            <p>Created</p>
+                            <p className='createdAt'>{subcard.createdAt}</p>
                         </div>
                     </div>
-                    <div className="key-value-container">
-                        <div className="key">
-                            <AiOutlineStar />
-                            <p>rating</p>
-                        </div>
-                        <div className="value">
-                            <div className='value-click' onClick={() => ratingEdit ? setRatingEdit(false) : setRatingEdit(true)} />
-                            <p className={chooseColor(rating)}>{rating}</p>
-                            {ratingEdit && <EditRating setRating={setRating} rating={rating} val={chooseColor(rating)} setRatingEdit={setRatingEdit} project={project} subcard={subcard} />}
-                        </div>
-                    </div>
-                    <div className="key-value-container">
-                        <div className="key">
-                            <MdOutlineLabel />
-                            <p>status</p>
-                        </div>
-                        <div className="value">
-                            <div className='value-click' onClick={() => statusEdit ? setStatusEdit(false) : setStatusEdit(true)} />
-                            <p className='status'>{status}</p>
-                            {statusEdit && <EditStatus setStatus={setStatus} status={status} setStatusEdit={setStatusEdit} project={project} subcard={subcard} cId={cId} />}
+                    <div className="subcard-show-section-one">
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                ref={domNode}
+                                type="text"
+                                onChange={(e) => setTitle(e.target.value)}
+                                value={title}
+                                maxLength='40'
+                                spellCheck='false'
+                            />
+                        </form>
+                        <div className="widget-container">
+                            <AiOutlineHeart />
+                            <MdDelete onClick={() => handleDelete(subcard.id)} />
                         </div>
                     </div>
-                    <div className="key-value-container">
-                        <div className="key">
-                            <FiUsers />
-                            <p>team</p>
-                        </div>
-                        <div className="value">
-                            {assignedUsers.length > 0 ? assignedUsers.map((user) => (
-                                <p>{user.title}</p>
-                            )) : <p>no - users</p>}
-                        </div>
-                    </div>
-                </div>
-                <div className="subcard-show-section-three">
-                    <div className="section-three-nav-container">
-                        <div className="section-three-links">
-                            <p className='description-tag-section-three'>description</p>
-                            <div className="comment-nav-container">
-                                <p>comments</p>
-                                <p>2</p>
+                    <div className="subcard-show-section-two">
+                        <div className="key-value-container">
+                            <div className="key">
+                                <BiCategoryAlt />
+                                <p>category</p>
+                            </div>
+                            <div className="value">
+                                <p className='category'>{category}</p>
                             </div>
                         </div>
-                        <div className="seperation-line" />
-                        <textarea
-                            placeholder='Enter text'
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description}
-                        />
+                        <div className="key-value-container">
+                            <div className="key">
+                                <AiOutlineStar />
+                                <p>rating</p>
+                            </div>
+                            <div className="value">
+                                <div className='value-click' onClick={() => ratingEdit ? setRatingEdit(false) : setRatingEdit(true)} />
+                                <p className={chooseColor(rating)}>{rating}</p>
+                                {ratingEdit && <EditRating setRating={setRating} rating={rating} val={chooseColor(rating)} setRatingEdit={setRatingEdit} project={project} subcard={subcard} />}
+                            </div>
+                        </div>
+                        <div className="key-value-container">
+                            <div className="key">
+                                <MdOutlineLabel />
+                                <p>status</p>
+                            </div>
+                            <div className="value">
+                                <div className='value-click' onClick={() => statusEdit ? setStatusEdit(false) : setStatusEdit(true)} />
+                                {currentCard && <p className='status' style={{ backgroundColor: currentCard.color }}>{status}</p>}
+                                {statusEdit && <EditStatus setCurrentCard={setCurrentCard} setStatus={setStatus} status={status} currentCard={currentCard} setStatusEdit={setStatusEdit} project={project} subcard={subcard} currentCId={currentCId} setCurrentCId={setCurrentCId} />}
+                            </div>
+                        </div>
+                        <div className="key-value-container">
+                            <div className="key">
+                                <FiUsers />
+                                <p>team</p>
+                            </div>
+                            <div className="value">
+                                {assignedUsers.length > 0 ? assignedUsers.map((user) => (
+                                    <p>{user.title}</p>
+                                )) : <p>no - users</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="subcard-show-section-three">
+                        <div className="section-three-nav-container">
+                            <div className="section-three-links">
+                                <p className='description-tag-section-three'>description</p>
+                                <div className="comment-nav-container">
+                                    <p>comments</p>
+                                    <p>2</p>
+                                </div>
+                            </div>
+                            <div className="seperation-line" />
+                            <form onSubmit={handleSubmit}>
+                                <textarea
+                                    ref={domNode}
+                                    placeholder='Enter text'
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    value={description}
+                                    spellCheck='false'
+                                    maxLength='150'
+                                />
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div >
+            </div >
+            {deletePopupActive && subId && <DeletePopup setSubcardFormActive={setSubcardFormActive} setDeletePopupActive={setDeletePopupActive} subId={subId} project={project} />}
+        </>
     )
 }
 
