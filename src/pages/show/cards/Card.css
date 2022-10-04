@@ -159,6 +159,22 @@ ul {
     align-items: center;
 }
 
+.category-container {
+    display: flex;
+    align-items: center;
+    margin-left: 0.2rem;
+}
+
+.category-container p {
+    font-weight: bold;
+    font-size: 0.6rem;
+    background-color: var(--primary-color);
+    color: white;
+    width: fit-content;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.4rem;
+}
+
 .assigned-user-one {
     position: relative;
     left: 0.5rem;

@@ -11,7 +11,7 @@
 
 .add-project-form-container {
     padding: 3rem 5rem;
-    width: 27rem;
+    width: 24.9rem;
     background-color: white;
     border-radius: 1rem;
     z-index: 2;
@@ -26,14 +26,9 @@
     flex-direction: column;
 }
 
-.input-container {
-    display: flex;
-}
-
 .add-project-form label {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
     align-items: flex-start;
     font-size: 0.7rem;
     color: var(--text-color);
@@ -44,14 +39,12 @@
     border: 1px solid var(--break-color);
 }
 
-.select-input {
-    margin-top: 0.35rem;
-    width: 11rem;
-}
-
-.add-project-form-left-container {
-    margin-right: 4rem;
+.add-project-form-top-container {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .click-container {
@@ -63,6 +56,7 @@
 
 .due-date-input {
     width: 10rem;
+    margin-left: auto;
 }
 
 .add-project-btn-container {

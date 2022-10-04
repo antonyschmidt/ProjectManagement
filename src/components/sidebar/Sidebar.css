@@ -314,3 +314,24 @@
     }
 
 }
+
+/* demo button */
+
+.demo-container {
+    display: flex;
+    position: relative;
+    left: -2px;
+    align-items: center;
+    cursor: pointer;
+    transition: ease 0.3s;
+    color: var(--text-color);
+}
+
+.demo-container svg {
+    font-size: 1.1rem;
+    margin-right: 1.2rem;
+}
+
+.demo-btn:hover {
+    transform: scale(1.1);
+}

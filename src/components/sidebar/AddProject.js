@@ -9,19 +9,12 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import './AddProject.css'
 import { useEffect } from 'react'
 
-const options = [
-    { value: 'mark', label: 'mark' },
-    { value: 'stefanie', label: 'stefanie' },
-    { value: 'john', label: 'john' },
-];
-
 export default function AddProject({ setFormActive }) {
     const { addDocument, response } = useFirestore('projects')
     const [error, setError] = useState(null)
     const [title, setTitle] = useState('')
     const [dueDate, setDueDate] = useState('')
     const [description, setDescription] = useState('')
-    const [selectedOption, setSelectedOption] = useState([]);
     const { user } = useAuthContext()
     const navigate = useNavigate()
 
@@ -29,15 +22,18 @@ export default function AddProject({ setFormActive }) {
         e.preventDefault()
         setError(null)
 
-        if (!title || !description || !dueDate || !selectedOption) {
+        if (!title || !description || !dueDate) {
             return setError('Please fill out all input fields')
         }
+
+        const current = new Date(dueDate)
+        const date = `${current.getDate()}.${current.getMonth() + 1}.${current.getFullYear()}`
 
         const newProject = {
             title: title,
             createdBy: user.uid,
             description: description,
-            dueDate: new Date(dueDate),
+            dueDate: date,
             assignedUsers: [],
             cards: [],
             subcards: []
@@ -55,7 +51,6 @@ export default function AddProject({ setFormActive }) {
             setTitle('')
             setDueDate('')
             setDescription('')
-            setSelectedOption(null)
 
             setFormActive(false)
             navigate(`projects/${response.document.id}`)
@@ -70,7 +65,7 @@ export default function AddProject({ setFormActive }) {
                 <h3>Create new project</h3>
                 <form className='add-project-form' onSubmit={handleSubmit}>
                     <div className="input-container">
-                        <div className="add-project-form-left-container">
+                        <div className="add-project-form-top-container">
                             <label>
                                 <span>Project Name</span>
                                 <input
@@ -82,18 +77,6 @@ export default function AddProject({ setFormActive }) {
                                 />
                             </label>
                             <label>
-                                <span>Description</span>
-                                <textarea
-                                    className='description-input'
-                                    cols="20"
-                                    rows="4"
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    value={description}
-                                />
-                            </label>
-                        </div>
-                        <div className="add-project-form-right-container">
-                            <label>
                                 <span>Due Date</span>
                                 <input
                                     className='due-date-input'
@@ -102,13 +85,17 @@ export default function AddProject({ setFormActive }) {
                                     value={dueDate}
                                 />
                             </label>
-                            <label >
-                                <span>Assign Users</span>
-                                <Select
-                                    className='select-input'
-                                    defaultValue={selectedOption}
-                                    onChange={setSelectedOption}
-                                    options={options}
+                        </div>
+                        <div className="add-project-form-bottom-container">
+                            <label>
+                                <span>Description</span>
+                                <textarea
+                                    style={{ resize: 'none' }}
+                                    className='description-input'
+                                    cols='51'
+                                    rows="6"
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    value={description}
                                 />
                             </label>
                         </div>

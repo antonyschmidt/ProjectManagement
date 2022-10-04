@@ -58,6 +58,9 @@ export default function Subcard({ cId, subcards, project }) {
                                         <div className="rating-container">
                                             <p className={chooseColor(subcard.rating)}>{subcard.rating}</p>
                                         </div>
+                                        <div className="category-container">
+                                            <p>{subcard.category}</p>
+                                        </div>
                                         <div className="assigned-users">
                                             <ul>
                                                 <li>

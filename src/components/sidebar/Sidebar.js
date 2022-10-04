@@ -8,12 +8,14 @@ import { IoIosSettings } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
+import { FaUserCircle } from "react-icons/fa";
 //components
 import AddProject from './AddProject';
 import DeletePopup from '../deletePopup/DeletePopup';
 import ProjectLink from './ProjectLink';
 //hooks
 import { useCollection } from '../../hooks/useCollection';
+import { useLogin } from '../../hooks/useLogin';
 //context
 import { useAuthContext } from '../../hooks/useAuthContext'
 //styles
@@ -23,6 +25,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
     const { data, error, isPending } = useCollection('projects')
+    const { login } = useLogin()
     const [formActive, setFormActive] = useState(false)
     const [deletePopupActive, setDeletePopupActive] = useState(false)
     const [sidebarActive, setSidebarActive] = useState(true)
@@ -33,6 +36,12 @@ export default function Sidebar() {
 
     if (user) {
         userRef = user.email.charAt(0)
+    }
+
+    const handleDemoClick = () => {
+
+        login('demo@gmx.de', '123456')
+
     }
 
     return (
@@ -87,6 +96,13 @@ export default function Sidebar() {
                                 <FaUserCheck className='login-icon' />
                                 <p>Login</p>
                             </Link>
+                        </li>}
+                    {!user &&
+                        <li>
+                            <div className="demo-container" onClick={handleDemoClick}>
+                                <FaUserCircle />
+                                <p>Demo</p>
+                            </div>
                         </li>}
                 </ul>
                 {user &&

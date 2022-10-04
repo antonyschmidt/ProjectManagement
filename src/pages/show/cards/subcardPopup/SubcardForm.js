@@ -18,6 +18,7 @@ import Select from 'react-select';
 import DeletePopup from "../../../../components/deletePopup/DeletePopup";
 import EditRating from './EditRating';
 import EditStatus from './EditStatus';
+import EditCategory from './EditCategory';
 //styles
 import './SubcardForm.css'
 import { useClickOutside } from '../../../../hooks/useClickOutside';
@@ -42,6 +43,7 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
     const [statusEdit, setStatusEdit] = useState(false)
     const [currentCId, setCurrentCId] = useState(cId)
     const [currentCard, setCurrentCard] = useState(null)
+    const [categoryEdit, setCategoryEdit] = useState(false)
     // delete form state
     const [subId, setSubId] = useState(null)
     const [deletePopupActive, setDeletePopupActive] = useState(false)
@@ -162,8 +164,9 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
                                 <BiCategoryAlt />
                                 <p>category</p>
                             </div>
-                            <div className="value">
+                            <div className="value" onClick={() => setCategoryEdit(true)} >
                                 <p className='category'>{category}</p>
+                                {categoryEdit && <EditCategory project={project} subcard={subcard} category={category} setCategory={setCategory} setCategoryEdit={setCategoryEdit} />}
                             </div>
                         </div>
                         <div className="key-value-container">

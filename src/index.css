@@ -15,7 +15,7 @@
   --error-color-background: #fe6d73;
   --priority-color-low: #62cf2f;
   --priority-color-low-secondary: #c5f1b1;
-  --priority-color-mid: #ffbc03;
+  --priority-color-mid: #fcc93c;
   --priority-color-mid-secondary: #ffe8a8;
   --priority-color-high: #ff7373;
   --priority-color-high-secondary: #ffbaba;
@@ -288,4 +288,36 @@ textarea:focus {
   background: var(--break-color);
   border: 0.3rem solid var(--bg-color);
   border-radius: 1rem;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+/* date picker */
+
+input[type=date] {
+  font-family: inherit;
+  letter-spacing: 3px;
+  font-size: 0.7rem;
+  padding: 0.43rem 0.5rem;
+  margin-top: 0.47rem;
+  transition: 0.2s ease;
+}
+
+input[type=date]:hover {
+  cursor: pointer;
+}
+
+input[type=date]:active {
+  border: 1px solid var(--secondary-color);
+}
+
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  background-color: #6c7e00;
+  border-radius: 0.2rem;
+  padding-right: 0.15rem;
+  padding-top: 0.21rem;
+  filter: invert(1);
 }

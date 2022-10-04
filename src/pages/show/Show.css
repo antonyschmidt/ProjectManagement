@@ -6,6 +6,7 @@
     max-width: inherit;
     padding: 2rem;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .title-nav-section input {
@@ -126,5 +127,16 @@
 
     .break-line {
         margin-top: 1.25rem;
+    }
+}
+
+@media (max-width: 950px) {
+
+    .filter-box {
+        display: none;
+    }
+
+    .vertical-seperation-line {
+        display: none;
     }
 }
