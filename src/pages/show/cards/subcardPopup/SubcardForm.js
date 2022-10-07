@@ -33,10 +33,8 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
     })
     const [title, setTitle] = useState(subcard.title)
     const [description, setDescription] = useState(subcard.description)
-    const [selectedOption, setSelectedOption] = useState([])
-    const [assignedUsers, setAssignedUsers] = useState(subcard.assignedUsers)
     const [rating, setRating] = useState(subcard.rating)
-    const [status, setStatus] = useState(subcard.status)
+    const [status, setStatus] = useState(null)
     const [category, setCategory] = useState(subcard.category)
     // edit states
     const [ratingEdit, setRatingEdit] = useState(false)
@@ -112,6 +110,7 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
             })
 
             setCurrentCard(result)
+            setStatus(result.status)
         }
 
     }, [project, cId])
@@ -142,10 +141,10 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
                             <p className='createdAt'>{subcard.createdAt}</p>
                         </div>
                     </div>
-                    <div className="subcard-show-section-one">
+                    <div className="subcard-show-section-one" ref={domNode}>
                         <form onSubmit={handleSubmit}>
                             <input
-                                ref={domNode}
+
                                 type="text"
                                 onChange={(e) => setTitle(e.target.value)}
                                 value={title}
@@ -164,7 +163,7 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
                                 <BiCategoryAlt />
                                 <p>category</p>
                             </div>
-                            <div className="value" onClick={() => setCategoryEdit(true)} >
+                            <div className="value" onClick={() => setCategoryEdit(true)}>
                                 <p className='category'>{category}</p>
                                 {categoryEdit && <EditCategory project={project} subcard={subcard} category={category} setCategory={setCategory} setCategoryEdit={setCategoryEdit} />}
                             </div>
@@ -197,9 +196,7 @@ export default function SubcardForm({ setSubcardFormActive, subcard, cId }) {
                                 <p>team</p>
                             </div>
                             <div className="value">
-                                {assignedUsers.length > 0 ? assignedUsers.map((user) => (
-                                    <p>{user.title}</p>
-                                )) : <p>no - users</p>}
+                                <p>no - users</p>
                             </div>
                         </div>
                     </div>

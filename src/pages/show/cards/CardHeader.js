@@ -23,7 +23,7 @@ const colors = [
     '#fe6d73',
 ]
 
-export default function CardHeader({ card, project, }) {
+export default function CardHeader({ cId, subcards, card, project, }) {
     const [moreOpen, setMoreOpen] = useState(false)
     const [deletePopupActive, setDeletePopupActive] = useState(false)
     const [edit, setEdit] = useState(false)
@@ -34,6 +34,11 @@ export default function CardHeader({ card, project, }) {
         setMoreOpen(false)
         setColorEdit(false)
         setEdit(false)
+    })
+
+    const filteredSubcards = subcards.filter((subcard) => {
+
+        return subcard.pid === cId
     })
 
 
@@ -95,7 +100,7 @@ export default function CardHeader({ card, project, }) {
         <>
             <div className="header-container">
                 {!moreOpen && <div className='header-bar-active'>
-                    <h3 className="card-header-title" style={{ backgroundColor: card.color }}>{card.status}</h3>
+                    <h3 className="card-header-title" style={{ backgroundColor: card.color }}>{card.status}<span className="subcard-counter">{filteredSubcards.length}</span></h3>
                     <CgMoreO className="more-subcard-icon" onClick={() => setMoreOpen(true)} />
                 </div>}
                 {moreOpen && <div ref={domNode} className='more-bar-active'>

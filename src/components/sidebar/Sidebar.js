@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 //icons
 import { FaDiceD6 } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
@@ -71,10 +71,10 @@ export default function Sidebar() {
                 <ul className='nav-list'>
                     {user &&
                         <li>
-                            <Link to='/'>
+                            <NavLink to='/'>
                                 <MdSpaceDashboard className='dashboard-icon' />
                                 <p>Dashboard</p>
-                            </Link>
+                            </NavLink>
                         </li>}
                     {user &&
                         <li>

@@ -47,6 +47,10 @@
     margin-bottom: 1rem;
 }
 
+.description-input {
+    width: 95%;
+}
+
 .click-container {
     position: absolute;
     width: 100vw;

@@ -9,7 +9,6 @@ export default function EditCategory({ category, setCategory, setCategoryEdit, s
     const [currentCategory, setCurrentCategory] = useState(category)
     const { updateDocument } = useFirestore('projects')
     const { domNode } = useClickOutside(() => {
-        setCategoryEdit(false)
         handleSubmit()
     })
 
@@ -18,7 +17,7 @@ export default function EditCategory({ category, setCategory, setCategoryEdit, s
             e.preventDefault()
         }
 
-        if (currentCategory !== subcard.categroy) {
+        if (currentCategory !== subcard.category) {
 
             let result = []
 
@@ -43,9 +42,11 @@ export default function EditCategory({ category, setCategory, setCategoryEdit, s
     }
 
     return (
-        <div className='edit-category-container' ref={domNode}>
+        <div className='edit-category-container'>
             <form onSubmit={handleSubmit}>
                 <input
+                    autoFocus
+                    ref={domNode}
                     maxLength='11'
                     spellCheck='false'
                     type="text"

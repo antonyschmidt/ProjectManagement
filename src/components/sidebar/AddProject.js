@@ -92,7 +92,6 @@ export default function AddProject({ setFormActive }) {
                                 <textarea
                                     style={{ resize: 'none' }}
                                     className='description-input'
-                                    cols='51'
                                     rows="6"
                                     onChange={(e) => setDescription(e.target.value)}
                                     value={description}

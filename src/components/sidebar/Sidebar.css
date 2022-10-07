@@ -120,6 +120,14 @@
     margin-top: 2rem;
 }
 
+.active p {
+    color: var(--secondary-color);
+}
+
+.active .dashboard-icon {
+    color: var(--secondary-color);
+}
+
 /* close & open sidebar */
 
 .close-icon {

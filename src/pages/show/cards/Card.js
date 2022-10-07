@@ -73,7 +73,7 @@ export default function Card({ project }) {
         <div className='card-container'>
             {project.cards && project.cards.map((card) => (
                 <div key={card.cId} className="card">
-                    <CardHeader card={card} project={project} />
+                    <CardHeader cId={card.cId} subcards={project.subcards} card={card} project={project} />
                     <Subcard cId={card.cId} subcards={project.subcards} project={project} />
                     <button className='subcard-btn' onClick={() => addSubcardClick(card.cId, card.status)}>
                         + Add Card

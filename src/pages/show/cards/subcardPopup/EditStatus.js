@@ -49,7 +49,7 @@ export default function EditStatus({ status, setStatusEdit, project, subcard, se
                 <p style={{ backgroundColor: currentCard.color }}>{status}</p>
             </div>
             {filteredCards.map((card) => (
-                <div className="status-cotainer">
+                <div className="status-cotainer" key={card.id}>
                     <p style={{ backgroundColor: card.color }} onClick={() => handleClick(card)}>{card.status}</p>
                 </div>
             ))}

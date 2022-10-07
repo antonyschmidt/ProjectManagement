@@ -2,8 +2,17 @@ import { useState } from "react";
 import { NavLink } from 'react-router-dom'
 //icons
 import { FaFolderMinus } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function ProjectLink({ projects, setProjectId, setDeletePopupActive }) {
+    const [freshProjects, setFreshProjects] = useState(null)
+
+
+    useEffect(() => {
+
+        setFreshProjects(projects)
+
+    }, [projects])
 
     const handleClick = async (project) => {
         setProjectId(project)
@@ -12,7 +21,7 @@ export default function ProjectLink({ projects, setProjectId, setDeletePopupActi
 
     return (
         <>
-            {projects && projects.map((project) => (
+            {freshProjects && freshProjects.map((project) => (
                 <li key={project.id}>
                     <NavLink to={`/projects/${project.id}`}>
                         {project.title}
